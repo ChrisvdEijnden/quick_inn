@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home - QuickInn{% endblock %}
+
+{% block content %}
+<div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h3>🍪 We use cookies</h3>
+            <p>We use cookies to improve your experience on our site. By continuing to browse, you accept our use of cookies.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button id="accept-cookies" class="cookie-btn accept-btn">Accept All</button>
+            <button id="decline-cookies" class="cookie-btn decline-btn">Decline</button>
+            <button id="customize-cookies" class="cookie-btn customize-btn">Customize</button>
+        </div>
+    </div>
+</div>
+
+<div id="cookie-modal" class="cookie-modal">
+    <div class="cookie-modal-content">
+        <h2>Cookie Settings</h2>
+        <div class="cookie-option">
+            <label>
+                <input type="checkbox" id="essential-cookies" checked disabled>
+                <strong>Essential Cookies</strong> (Always Active)
+                <p>These cookies are necessary for the website to function.</p>
+            </label>
+        </div>
+        <div class="cookie-option">
+            <label>
+                <input type="checkbox" id="analytics-cookies">
+                <strong>Analytics Cookies</strong>
+                <p>Help us understand how visitors interact with our website.</p>
+            </label>
+        </div>
+        <div class="cookie-option">
+            <label>
+                <input type="checkbox" id="marketing-cookies">
+                <strong>Marketing Cookies</strong>
+                <p>Used to track visitors across websites for marketing purposes.</p>
+            </label>
+        </div>
+        <div class="cookie-modal-buttons">
+            <button id="save-preferences" class="cookie-btn accept-btn">Save Preferences</button>
+            <button id="close-modal" class="cookie-btn decline-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="parallax-bg"></div>
+    <div class="parallax-content">
+        <h1>Welcome to QuickInn</h1>
+        <p>Scan In. Settle In.</p>
+        <button class="get-started-btn">Get Started</button>
+    </div>
+</div>
+
+<div class="content">
+    <section class="info-section">
+        <h2>Be our guest in one quick scan.</h2>
+        <p>
+            QuickInn simplifies hotel check-ins by turning reservations into a single QR code. 
+            No waiting, no paperwork—just scan and enter. 
+            A faster arrival for guests and a smoother experience for hotels.
+        </p>
+        <button class="gallery-button">Get Started</button>
+    </section>
+</div>
+
+<section class="image-gallery">
+    <div class="gallery-item">
+        <img src="{% static 'main/images/premium_photo-1745946640178-69beac3840cc.avif' %}">
+    </div>
+    <div class="gallery-item">
+        <img src="{% static 'main/images/photo-1660557989688-1564893ccf8c.avif' %}">
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'main/js/script.js' %}"></script>
+{% endblock %}

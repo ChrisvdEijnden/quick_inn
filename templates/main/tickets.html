@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Tickets - QuickInn{% endblock %}
+
+{% block content %}
+<div class="tickets-container">
+    <a href="" class="plus-btn">
+        <img src="{% static 'main/icons/plus@10x.png' %}" alt="Plus" class="plus-icon">
+    </a>
+    <div class="tickets-grid">
+    {% for ticket in tickets %}
+        <div class="ticket">
+            Ticket {{ ticket }}
+        </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'main/js/script.js' %}"></script>
+{% endblock %}

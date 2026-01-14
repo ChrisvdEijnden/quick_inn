@@ -1,0 +1,100 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Profile - QuickInn{% endblock %}
+
+{% block content %}
+
+<div class="profile-wrapper">
+    <h1>Account information</h1>
+    
+    <form method="POST" action="{% url 'profile' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="first_name">FIRST NAME</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name|default:'' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">LAST NAME</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name|default:'' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">EMAIL ADDRESS</label>
+            <input type="email" id="email" name="email" value="{{ user.email|default:'' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">PHONE</label>
+            <div class="phone-wrapper">
+                <select class="country-code" id="country_code" name="country_code">
+                    <option value="+31" {% if user.country_code == "+31" or not user.country_code %}selected{% endif %}>+31</option>
+                    <option value="+1" {% if user.country_code == "+1" %}selected{% endif %}>+1</option>
+                    <option value="+44" {% if user.country_code == "+44" %}selected{% endif %}>+44</option>
+                    <option value="+49" {% if user.country_code == "+49" %}selected{% endif %}>+49</option>
+                    <option value="+33" {% if user.country_code == "+33" %}selected{% endif %}>+33</option>
+                    <option value="+39" {% if user.country_code == "+39" %}selected{% endif %}>+39</option>
+                    <option value="+34" {% if user.country_code == "+34" %}selected{% endif %}>+34</option>
+                </select>
+                <input type="tel" class="phone-input" id="phone_number" name="phone_number" value="{% if user.phone_number %}{{ user.phone_number }}{% endif %}" placeholder="Phone number">            
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="date_of_birth">DATE OF BIRTH</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" value="{% if user.date_of_birth %}{{ user.date_of_birth|date:'Y-m-d' }}{% endif %}">        
+        </div>
+
+        <div class="form-group">
+            <label for="nationality">NATIONALITY</label>
+            <select id="nationality" name="nationality">
+                <option value="">Select nationality</option>
+                {% for country in nationalities %}
+                    <option value="{{ country }}" {% if user.nationality == country %}selected{% endif %}>
+                        {{ country }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">GENDER</label>
+            <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option value="male" {% if user.gender == "male" %}selected{% endif %}>Male</option>
+                <option value="female" {% if user.gender == "female" %}selected{% endif %}>Female</option>
+                <option value="non-binary" {% if user.gender == "non-binary" %}selected{% endif %}>Non-binary</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="street_address">STREET ADDRESS</label>
+            <input type="text" id="street_address" name="street_address" value="{{ user.street_address }}">
+        </div>
+
+        <div class="address-row" style="display: flex; gap: 10px;">
+            <div class="form-group" style="flex: 2;">
+                <label for="city">CITY</label>
+                <input type="text" id="city" name="city" value="{{ user.city }}">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label for="postal_code">POSTAL CODE</label>
+                <input type="text" id="postal_code" name="postal_code" value="{{ user.postal_code }}">
+            </div>
+        </div>
+
+        <button type="submit" class="save-btn">SAVE</button>
+    </form>
+
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">LOG OUT</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'main/js/script.js' %}"></script>
+{% endblock %}
