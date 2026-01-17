@@ -88,7 +88,7 @@ def profile_view(request):
         user.save() 
         
         messages.success(request, 'Your profile was successfully updated!')
-        return redirect('profile')
+        return redirect('home')
     return render(request, 'main/profile.html', {
                 'user': request.user,
                 'nationalities': nationalities
